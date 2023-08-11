@@ -5,19 +5,19 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class SteamUserData {
+public class SteamUserData extends SteamUser {
 
     private String steamid;
-    private static String api_key = "3D8357B6358C5DBC60C74D3D6C534797";
+
     public SteamUserData(String steamid) {
-        this.steamid = steamid;
+        super(steamid);
     }
+
 
     public StringBuffer getAllUserData() {
         String url = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + api_key +"&steamids=" + steamid;
         StringBuffer response = new StringBuffer();
         try {
-
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("GET");
